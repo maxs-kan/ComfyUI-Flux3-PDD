@@ -1,0 +1,2135 @@
+{
+ "id": "e8f30439-267f-45de-b260-db0d114b2c85",
+ "revision": 0,
+ "last_node_id": 212,
+ "last_link_id": 217,
+ "nodes": [
+  {
+   "id": 9,
+   "type": "SaveImage",
+   "pos": [
+    2480,
+    310
+   ],
+   "size": [
+    560,
+    600
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "link": 217
+    }
+   ],
+   "outputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "links": []
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "SaveImage"
+   },
+   "widgets_values": [
+    "flux3_pdd"
+   ],
+   "widgets_values_named": {
+    "filename_prefix": "image_flux3_klein_distilled_t2i"
+   }
+  },
+  {
+   "id": 19,
+   "type": "ResolutionSelector",
+   "pos": [
+    1100,
+    30
+   ],
+   "size": [
+    420,
+    190
+   ],
+   "flags": {},
+   "order": 1,
+   "mode": 0,
+   "showAdvanced": false,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "width",
+     "type": "INT",
+     "links": [
+      145,
+      208
+     ]
+    },
+    {
+     "name": "height",
+     "type": "INT",
+     "links": [
+      146,
+      209
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "ResolutionSelector"
+   },
+   "widgets_values": [
+    "1:1 (Square)",
+    1.0,
+    16
+   ],
+   "widgets_values_named": {
+    "aspect_ratio": "1:1 (Square)",
+    "megapixels": 2.0,
+    "multiple": 16
+   }
+  },
+  {
+   "id": 20,
+   "type": "MarkdownNote",
+   "pos": [
+    -530,
+    30
+   ],
+   "size": [
+    470,
+    660
+   ],
+   "flags": {},
+   "order": 2,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [],
+   "properties": {},
+   "widgets_values": [
+    "## FLUX.3 klein turbo PDD\n\n- **steps**: 8 (best) or 4 (faster). 2 is a quick composition preview with a fixed seed: low detail.\n- Keep cfg 1, `euler` and the loader's SIGMAS (CFG is distilled into the LoRA).\n- Models: [flux-3-image-klein-comfy](https://huggingface.co/black-forest-labs/flux-3-image-klein-comfy) (base bf16, text encoder, upsampler, VAE) and the LoRA from [Flux-3-Klein-turbo-pdd-4_8-steps](https://huggingface.co/NoiseToNova/Flux-3-Klein-turbo-pdd-4_8-steps)."
+   ],
+   "widgets_values_named": {
+    "text": "Guide: [Subgraph](https://docs.comfy.org/interface/features/subgraph)\n\n## How to use\n\n1. Type your prompt in **Prompt**.\n2. Optional: draw **Bounding boxes** and give each one a description. Leave it empty for a normal prompt.\n   **\u26a0\ufe0f Requires Nodes 2.0 (ComfyUI icon \u2192 Nodes 2.0).**\n3. **Prompt Upsampler** expands the prompt; with boxes it keeps them and expands their descriptions. The result is shown in **Upsampled prompt**. Turn it off with *enable upsampler*.\n4. **Diffusion** renders the image: base model, 50 steps, cfg 4 (the empty negative prompt is the reference default). Pick the models, seed and *alpha* (timestep shift; default 16, the model's reference is 6.93) there.\n\n## Prompt upsampler\n\nThe upsampler's system prompts are published at [black-forest-labs/flux-3-image-klein-pup](https://huggingface.co/black-forest-labs/flux-3-image-klein-pup).\n\n## Model Links\n\n- [Hugging Face:black-forest-labs/flux-3-image-klein-comfy](https://huggingface.co/black-forest-labs/flux-3-image-klein-comfy)\n\n**text_encoders**\n\n- [qwen3.5_9b_flux3_prompt_upsampler_bf16.safetensors](https://huggingface.co/black-forest-labs/flux-3-image-klein-comfy/resolve/main/text_encoders/qwen3.5_9b_flux3_prompt_upsampler_bf16.safetensors)\n- [qwen3vl_4b_bf16.safetensors](https://huggingface.co/black-forest-labs/flux-3-image-klein-comfy/resolve/main/text_encoders/qwen3vl_4b_bf16.safetensors)\n\n**diffusion_models**\n\n- [flux3-image-klein-base-bf16.safetensors](https://huggingface.co/black-forest-labs/flux-3-image-klein-comfy/resolve/main/diffusion_models/flux3-image-klein-base-bf16.safetensors)\n\n**vae**\n\n- [flux2-vae.safetensors](https://huggingface.co/black-forest-labs/flux-3-image-klein-comfy/resolve/main/vae/flux2-vae.safetensors)\n\n\n## Model Storage Location\n\n```\n\ud83d\udcc2 ComfyUI/\n\u251c\u2500\u2500 \ud83d\udcc2 models/\n\u2502   \u251c\u2500\u2500 \ud83d\udcc2 text_encoders/\n\u2502   \u2502   \u251c\u2500\u2500 qwen3.5_9b_flux3_prompt_upsampler_bf16.safetensors\n\u2502   \u2502   \u2514\u2500\u2500 qwen3vl_4b_bf16.safetensors\n\u2502   \u251c\u2500\u2500 \ud83d\udcc2 diffusion_models/\n\u2502   \u2502   \u2514\u2500\u2500 flux3-image-klein-base-bf16.safetensors\n\u2502   \u2514\u2500\u2500 \ud83d\udcc2 vae/\n\u2502       \u2514\u2500\u2500 flux2-vae.safetensors\n```\n\n## Report Issue\n\nNote: Please update ComfyUI first ([guide](https://docs.comfy.org/installation/update_comfyui)) and prepare required models. Desktop/Cloud updates follow stable releases, so some nightly-supported models may not be available yet.\n\n- Cannot run / runtime errors: [ComfyUI/issues](https://github.com/comfyanonymous/ComfyUI/issues)\n- UI / frontend issues: [ComfyUI_frontend/issues](https://github.com/Comfy-Org/ComfyUI_frontend/issues)\n- Workflow issues: [workflow_templates/issues](https://github.com/Comfy-Org/workflow_templates/issues)\n"
+   },
+   "color": "#222",
+   "bgcolor": "#000"
+  },
+  {
+   "id": 25,
+   "type": "CreateBoundingBoxes",
+   "pos": [
+    0,
+    420
+   ],
+   "size": [
+    420,
+    560
+   ],
+   "flags": {},
+   "order": 3,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "background",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "name": "bboxes",
+     "shape": 7,
+     "type": "BOUNDING_BOX,ARRAY,STRING",
+     "link": null
+    },
+    {
+     "localized_name": "width",
+     "name": "width",
+     "type": "INT",
+     "widget": {
+      "name": "width"
+     },
+     "link": 145
+    },
+    {
+     "localized_name": "height",
+     "name": "height",
+     "type": "INT",
+     "widget": {
+      "name": "height"
+     },
+     "link": 146
+    }
+   ],
+   "outputs": [
+    {
+     "name": "preview",
+     "type": "IMAGE",
+     "links": []
+    },
+    {
+     "name": "bboxes",
+     "type": "BOUNDING_BOX",
+     "links": []
+    },
+    {
+     "name": "elements",
+     "type": "ARRAY",
+     "links": [
+      112
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CreateBoundingBoxes"
+   },
+   "widgets_values": [
+    1000,
+    1000,
+    [],
+    []
+   ],
+   "widgets_values_named": {
+    "width": 1000,
+    "height": 1000,
+    "editor_state": [],
+    "last_incoming": []
+   },
+   "title": "Bounding boxes (optional)",
+   "color": "#232",
+   "bgcolor": "#353"
+  },
+  {
+   "id": 28,
+   "type": "PrimitiveStringMultiline",
+   "title": "Prompt",
+   "pos": [
+    0,
+    30
+   ],
+   "size": [
+    420,
+    300
+   ],
+   "flags": {},
+   "order": 4,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "localized_name": "STRING",
+     "name": "STRING",
+     "type": "STRING",
+     "links": [
+      111
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "PrimitiveStringMultiline"
+   },
+   "widgets_values": [
+    "A chunky knitted diorama: three white cable-knit icebergs with tiny pale blue houses, a cream banner embroidered \"KNITTED ICEBERG VILLAGE\", a giant magenta knitted whale tail bursting from a yarn sea"
+   ],
+   "color": "#232",
+   "bgcolor": "#353"
+  },
+  {
+   "id": 113,
+   "type": "PreviewAny",
+   "pos": [
+    480,
+    344
+   ],
+   "size": [
+    560,
+    400
+   ],
+   "flags": {},
+   "order": 5,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "source",
+     "name": "source",
+     "type": "*",
+     "link": 113
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "STRING",
+     "name": "STRING",
+     "type": "STRING",
+     "links": [
+      204
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "PreviewAny"
+   },
+   "widgets_values": [],
+   "widgets_values_named": {},
+   "title": "Upsampled prompt",
+   "color": "#323",
+   "bgcolor": "#535"
+  },
+  {
+   "id": 127,
+   "type": "294d97c2-5179-4d93-a7ae-87b9745df54a",
+   "title": "Prompt Upsampler",
+   "pos": [
+    480,
+    30
+   ],
+   "size": [
+    560,
+    224
+   ],
+   "flags": {},
+   "order": 6,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "prompt",
+     "name": "prompt",
+     "type": "STRING",
+     "link": 111
+    },
+    {
+     "label": "bounding_boxes",
+     "name": "bounding_boxes",
+     "type": "ARRAY",
+     "link": 112
+    },
+    {
+     "label": "enable upsampler",
+     "name": "enable",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "enable"
+     },
+     "link": null
+    },
+    {
+     "label": "upsampler model",
+     "name": "upsampler_model",
+     "type": "COMBO",
+     "widget": {
+      "name": "upsampler_model"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "prompt",
+     "name": "prompt",
+     "type": "STRING",
+     "links": [
+      113
+     ]
+    }
+   ],
+   "properties": {
+    "previewExposures": []
+   },
+   "color": "#323",
+   "bgcolor": "#535",
+   "widgets_values": [
+    "",
+    true,
+    "qwen3.5_9b_flux3_prompt_upsampler_bf16.safetensors"
+   ],
+   "widgets_values_named": {
+    "prompt": "",
+    "enable": true,
+    "upsampler_model": "qwen3.5_9b_flux3_prompt_upsampler_bf16.safetensors"
+   }
+  },
+  {
+   "id": 201,
+   "type": "UNETLoader",
+   "pos": [
+    1100,
+    310
+   ],
+   "size": [
+    340,
+    82
+   ],
+   "flags": {},
+   "order": 7,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "MODEL",
+     "type": "MODEL",
+     "links": [
+      201
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "UNETLoader"
+   },
+   "widgets_values": [
+    "flux3-image-klein-base-bf16.safetensors",
+    "default"
+   ]
+  },
+  {
+   "id": 202,
+   "type": "CLIPLoader",
+   "pos": [
+    1100,
+    440
+   ],
+   "size": [
+    340,
+    106
+   ],
+   "flags": {},
+   "order": 8,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "CLIP",
+     "type": "CLIP",
+     "links": [
+      202,
+      203
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPLoader"
+   },
+   "widgets_values": [
+    "qwen3vl_4b_bf16.safetensors",
+    "flux3",
+    "default"
+   ]
+  },
+  {
+   "id": 203,
+   "type": "VAELoader",
+   "pos": [
+    1100,
+    590
+   ],
+   "size": [
+    340,
+    58
+   ],
+   "flags": {},
+   "order": 9,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "VAE",
+     "type": "VAE",
+     "links": [
+      216
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAELoader"
+   },
+   "widgets_values": [
+    "flux2-vae.safetensors"
+   ]
+  },
+  {
+   "id": 204,
+   "type": "Flux3PDDLoader",
+   "pos": [
+    1480,
+    310
+   ],
+   "size": [
+    340,
+    106
+   ],
+   "flags": {},
+   "order": 10,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 201
+    }
+   ],
+   "outputs": [
+    {
+     "name": "MODEL",
+     "type": "MODEL",
+     "links": [
+      205
+     ]
+    },
+    {
+     "name": "SIGMAS",
+     "type": "SIGMAS",
+     "links": [
+      213
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "Flux3PDDLoader"
+   },
+   "widgets_values": [
+    "Flux-3-Klein-turbo-pdd-4_8-steps-comfy.safetensors",
+    "8",
+    1.0
+   ]
+  },
+  {
+   "id": 205,
+   "type": "CLIPTextEncode",
+   "pos": [
+    1480,
+    460
+   ],
+   "size": [
+    340,
+    90
+   ],
+   "flags": {},
+   "order": 11,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "clip",
+     "type": "CLIP",
+     "link": 202
+    },
+    {
+     "name": "text",
+     "type": "STRING",
+     "link": 204,
+     "widget": {
+      "name": "text"
+     }
+    }
+   ],
+   "outputs": [
+    {
+     "name": "CONDITIONING",
+     "type": "CONDITIONING",
+     "links": [
+      206
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPTextEncode"
+   },
+   "widgets_values": [
+    ""
+   ],
+   "title": "Positive (upsampled prompt)"
+  },
+  {
+   "id": 206,
+   "type": "CLIPTextEncode",
+   "pos": [
+    1480,
+    600
+   ],
+   "size": [
+    340,
+    90
+   ],
+   "flags": {},
+   "order": 12,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "clip",
+     "type": "CLIP",
+     "link": 203
+    }
+   ],
+   "outputs": [
+    {
+     "name": "CONDITIONING",
+     "type": "CONDITIONING",
+     "links": [
+      207
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPTextEncode"
+   },
+   "widgets_values": [
+    ""
+   ],
+   "title": "Negative (unused at cfg 1)"
+  },
+  {
+   "id": 207,
+   "type": "CFGGuider",
+   "pos": [
+    1860,
+    310
+   ],
+   "size": [
+    270,
+    98
+   ],
+   "flags": {},
+   "order": 13,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 205
+    },
+    {
+     "name": "positive",
+     "type": "CONDITIONING",
+     "link": 206
+    },
+    {
+     "name": "negative",
+     "type": "CONDITIONING",
+     "link": 207
+    }
+   ],
+   "outputs": [
+    {
+     "name": "GUIDER",
+     "type": "GUIDER",
+     "links": [
+      211
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CFGGuider"
+   },
+   "widgets_values": [
+    1.0
+   ]
+  },
+  {
+   "id": 208,
+   "type": "KSamplerSelect",
+   "pos": [
+    1860,
+    450
+   ],
+   "size": [
+    270,
+    58
+   ],
+   "flags": {},
+   "order": 14,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "SAMPLER",
+     "type": "SAMPLER",
+     "links": [
+      212
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "KSamplerSelect"
+   },
+   "widgets_values": [
+    "euler"
+   ]
+  },
+  {
+   "id": 209,
+   "type": "RandomNoise",
+   "pos": [
+    1860,
+    550
+   ],
+   "size": [
+    270,
+    82
+   ],
+   "flags": {},
+   "order": 15,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "NOISE",
+     "type": "NOISE",
+     "links": [
+      210
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "RandomNoise"
+   },
+   "widgets_values": [
+    0,
+    "fixed"
+   ]
+  },
+  {
+   "id": 210,
+   "type": "EmptyFlux2LatentImage",
+   "pos": [
+    1860,
+    670
+   ],
+   "size": [
+    270,
+    106
+   ],
+   "flags": {},
+   "order": 16,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "width",
+     "type": "INT",
+     "link": 208,
+     "widget": {
+      "name": "width"
+     }
+    },
+    {
+     "name": "height",
+     "type": "INT",
+     "link": 209,
+     "widget": {
+      "name": "height"
+     }
+    }
+   ],
+   "outputs": [
+    {
+     "name": "LATENT",
+     "type": "LATENT",
+     "links": [
+      214
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "EmptyFlux2LatentImage"
+   },
+   "widgets_values": [
+    1024,
+    1024,
+    1
+   ]
+  },
+  {
+   "id": 211,
+   "type": "SamplerCustomAdvanced",
+   "pos": [
+    2170,
+    310
+   ],
+   "size": [
+    270,
+    126
+   ],
+   "flags": {},
+   "order": 17,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "noise",
+     "type": "NOISE",
+     "link": 210
+    },
+    {
+     "name": "guider",
+     "type": "GUIDER",
+     "link": 211
+    },
+    {
+     "name": "sampler",
+     "type": "SAMPLER",
+     "link": 212
+    },
+    {
+     "name": "sigmas",
+     "type": "SIGMAS",
+     "link": 213
+    },
+    {
+     "name": "latent_image",
+     "type": "LATENT",
+     "link": 214
+    }
+   ],
+   "outputs": [
+    {
+     "name": "output",
+     "type": "LATENT",
+     "links": [
+      215
+     ]
+    },
+    {
+     "name": "denoised_output",
+     "type": "LATENT",
+     "links": null
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "SamplerCustomAdvanced"
+   },
+   "widgets_values": []
+  },
+  {
+   "id": 212,
+   "type": "VAEDecode",
+   "pos": [
+    2170,
+    490
+   ],
+   "size": [
+    210,
+    46
+   ],
+   "flags": {},
+   "order": 18,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "samples",
+     "type": "LATENT",
+     "link": 215
+    },
+    {
+     "name": "vae",
+     "type": "VAE",
+     "link": 216
+    }
+   ],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      217
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAEDecode"
+   },
+   "widgets_values": []
+  }
+ ],
+ "links": [
+  [
+   111,
+   28,
+   0,
+   127,
+   0,
+   "STRING"
+  ],
+  [
+   112,
+   25,
+   2,
+   127,
+   1,
+   "ARRAY"
+  ],
+  [
+   113,
+   127,
+   0,
+   113,
+   0,
+   "STRING"
+  ],
+  [
+   145,
+   19,
+   0,
+   25,
+   2,
+   "INT"
+  ],
+  [
+   146,
+   19,
+   1,
+   25,
+   3,
+   "INT"
+  ],
+  [
+   201,
+   201,
+   0,
+   204,
+   0,
+   "MODEL"
+  ],
+  [
+   202,
+   202,
+   0,
+   205,
+   0,
+   "CLIP"
+  ],
+  [
+   203,
+   202,
+   0,
+   206,
+   0,
+   "CLIP"
+  ],
+  [
+   204,
+   113,
+   0,
+   205,
+   1,
+   "STRING"
+  ],
+  [
+   205,
+   204,
+   0,
+   207,
+   0,
+   "MODEL"
+  ],
+  [
+   206,
+   205,
+   0,
+   207,
+   1,
+   "CONDITIONING"
+  ],
+  [
+   207,
+   206,
+   0,
+   207,
+   2,
+   "CONDITIONING"
+  ],
+  [
+   208,
+   19,
+   0,
+   210,
+   0,
+   "INT"
+  ],
+  [
+   209,
+   19,
+   1,
+   210,
+   1,
+   "INT"
+  ],
+  [
+   210,
+   209,
+   0,
+   211,
+   0,
+   "NOISE"
+  ],
+  [
+   211,
+   207,
+   0,
+   211,
+   1,
+   "GUIDER"
+  ],
+  [
+   212,
+   208,
+   0,
+   211,
+   2,
+   "SAMPLER"
+  ],
+  [
+   213,
+   204,
+   1,
+   211,
+   3,
+   "SIGMAS"
+  ],
+  [
+   214,
+   210,
+   0,
+   211,
+   4,
+   "LATENT"
+  ],
+  [
+   215,
+   211,
+   0,
+   212,
+   0,
+   "LATENT"
+  ],
+  [
+   216,
+   203,
+   0,
+   212,
+   1,
+   "VAE"
+  ],
+  [
+   217,
+   212,
+   0,
+   9,
+   0,
+   "IMAGE"
+  ]
+ ],
+ "groups": [],
+ "config": {},
+ "extra": {
+  "ds": {
+   "scale": 0.6,
+   "offset": [
+    620,
+    60
+   ]
+  },
+  "frontendVersion": "1.55.17"
+ },
+ "version": 0.4,
+ "definitions": {
+  "subgraphs": [
+   {
+    "id": "294d97c2-5179-4d93-a7ae-87b9745df54a",
+    "version": 1,
+    "state": {
+     "lastGroupId": 3,
+     "lastNodeId": 126,
+     "lastLinkId": 110,
+     "lastRerouteId": 0
+    },
+    "revision": 0,
+    "config": {},
+    "name": "Prompt Upsampler",
+    "inputNode": {
+     "id": -10,
+     "bounding": [
+      0,
+      80,
+      200,
+      160
+     ]
+    },
+    "outputNode": {
+     "id": -20,
+     "bounding": [
+      2020,
+      80,
+      140,
+      70
+     ]
+    },
+    "inputs": [
+     {
+      "id": "1b579fb6-db8a-4153-91fa-61109f19a4e1",
+      "name": "prompt",
+      "type": "STRING",
+      "linkIds": [
+       89,
+       98,
+       106
+      ],
+      "label": "prompt",
+      "pos": [
+       180,
+       110
+      ]
+     },
+     {
+      "id": "b3ac3af9-1050-40aa-ad41-4b5af015cc01",
+      "name": "bounding_boxes",
+      "type": "ARRAY",
+      "linkIds": [
+       88,
+       93
+      ],
+      "label": "bounding_boxes",
+      "pos": [
+       180,
+       140
+      ]
+     },
+     {
+      "id": "fd743e51-c181-440e-8290-565418b37e1f",
+      "name": "enable",
+      "type": "BOOLEAN",
+      "linkIds": [
+       108
+      ],
+      "label": "enable upsampler",
+      "pos": [
+       180,
+       170
+      ]
+     },
+     {
+      "id": "c056ffc9-0dae-4183-90b3-8a56055c8d97",
+      "name": "upsampler_model",
+      "type": "COMBO",
+      "linkIds": [
+       109
+      ],
+      "label": "upsampler model",
+      "pos": [
+       180,
+       200
+      ]
+     }
+    ],
+    "outputs": [
+     {
+      "id": "430744a2-9cd0-4cfd-a192-8594e23c91ae",
+      "name": "prompt",
+      "type": "STRING",
+      "linkIds": [
+       110
+      ],
+      "localized_name": "prompt",
+      "pos": [
+       2040,
+       110
+      ]
+     }
+    ],
+    "widgets": [],
+    "nodes": [
+     {
+      "id": 112,
+      "type": "CLIPLoader",
+      "pos": [
+       1480,
+       110
+      ],
+      "size": [
+       480,
+       130
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+       {
+        "localized_name": "clip_name",
+        "name": "clip_name",
+        "type": "COMBO",
+        "widget": {
+         "name": "clip_name"
+        },
+        "link": 109
+       }
+      ],
+      "outputs": [
+       {
+        "localized_name": "CLIP",
+        "name": "CLIP",
+        "type": "CLIP",
+        "links": [
+         92
+        ]
+       }
+      ],
+      "properties": {
+       "Node name for S&R": "CLIPLoader",
+       "models": [
+        {
+         "name": "qwen3.5_9b_flux3_prompt_upsampler_bf16.safetensors",
+         "url": "https://huggingface.co/black-forest-labs/flux-3-image-klein-comfy/resolve/main/text_encoders/qwen3.5_9b_flux3_prompt_upsampler_bf16.safetensors",
+         "directory": "text_encoders"
+        }
+       ]
+      },
+      "widgets_values": [
+       "qwen3.5_9b_flux3_prompt_upsampler_bf16.safetensors",
+       "flux3",
+       "default"
+      ],
+      "widgets_values_named": {
+       "clip_name": "qwen3.5_9b_flux3_prompt_upsampler_bf16.safetensors",
+       "type": "flux3",
+       "device": "default"
+      },
+      "title": "Upsampler model"
+     },
+     {
+      "id": 116,
+      "type": "ComfySwitchNode",
+      "pos": [
+       1480,
+       1000
+      ],
+      "size": [
+       480,
+       100
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+       {
+        "localized_name": "on_false",
+        "name": "on_false",
+        "shape": 7,
+        "type": "STRING",
+        "link": 90
+       },
+       {
+        "localized_name": "on_true",
+        "name": "on_true",
+        "shape": 7,
+        "type": "STRING",
+        "link": 91
+       },
+       {
+        "localized_name": "switch",
+        "name": "switch",
+        "type": "BOOLEAN",
+        "widget": {
+         "name": "switch"
+        },
+        "link": 108
+       }
+      ],
+      "outputs": [
+       {
+        "localized_name": "output",
+        "name": "output",
+        "type": "STRING",
+        "links": [
+         110
+        ]
+       }
+      ],
+      "properties": {
+       "Node name for S&R": "ComfySwitchNode"
+      },
+      "widgets_values": [
+       true
+      ],
+      "widgets_values_named": {
+       "switch": true
+      },
+      "title": "Upsampler on/off",
+      "color": "#323",
+      "bgcolor": "#535"
+     },
+     {
+      "id": 27,
+      "type": "Flux3LayoutPrompt",
+      "pos": [
+       1480,
+       860
+      ],
+      "size": [
+       480,
+       80
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+       {
+        "localized_name": "prompt",
+        "name": "prompt",
+        "type": "STRING",
+        "widget": {
+         "name": "prompt"
+        },
+        "link": 89
+       },
+       {
+        "name": "element",
+        "type": "ARRAY",
+        "link": 88
+       }
+      ],
+      "outputs": [
+       {
+        "name": "prompt",
+        "type": "STRING",
+        "links": [
+         90
+        ]
+       }
+      ],
+      "properties": {
+       "Node name for S&R": "Flux3LayoutPrompt"
+      },
+      "widgets_values": [
+       ""
+      ],
+      "widgets_values_named": {
+       "prompt": ""
+      },
+      "title": "Prompt + boxes",
+      "color": "#323",
+      "bgcolor": "#535"
+     },
+     {
+      "id": 118,
+      "type": "Flux3LayoutPrompt",
+      "title": "Box rows only",
+      "pos": [
+       300,
+       110
+      ],
+      "size": [
+       420,
+       80
+      ],
+      "flags": {},
+      "order": 118,
+      "mode": 0,
+      "inputs": [
+       {
+        "localized_name": "prompt",
+        "name": "prompt",
+        "type": "STRING",
+        "link": null,
+        "widget": {
+         "name": "prompt"
+        }
+       },
+       {
+        "localized_name": "element",
+        "name": "element",
+        "type": "ARRAY",
+        "link": 93
+       }
+      ],
+      "outputs": [
+       {
+        "localized_name": "prompt",
+        "name": "prompt",
+        "type": "STRING",
+        "links": [
+         94
+        ]
+       }
+      ],
+      "properties": {
+       "Node name for S&R": "Flux3LayoutPrompt"
+      },
+      "widgets_values": [
+       ""
+      ],
+      "color": "#323",
+      "bgcolor": "#535"
+     },
+     {
+      "id": 119,
+      "type": "StringTrim",
+      "title": "Trim box rows",
+      "pos": [
+       300,
+       250
+      ],
+      "size": [
+       420,
+       82
+      ],
+      "flags": {},
+      "order": 119,
+      "mode": 0,
+      "inputs": [
+       {
+        "localized_name": "string",
+        "name": "string",
+        "type": "STRING",
+        "link": 94,
+        "widget": {
+         "name": "string"
+        }
+       }
+      ],
+      "outputs": [
+       {
+        "localized_name": "STRING",
+        "name": "STRING",
+        "type": "STRING",
+        "links": [
+         95,
+         97
+        ]
+       }
+      ],
+      "properties": {
+       "Node name for S&R": "StringTrim"
+      },
+      "widgets_values": [
+       "",
+       "Both"
+      ],
+      "color": "#323",
+      "bgcolor": "#535"
+     },
+     {
+      "id": 120,
+      "type": "StringContains",
+      "title": "Has boxes?",
+      "pos": [
+       300,
+       392
+      ],
+      "size": [
+       420,
+       110
+      ],
+      "flags": {},
+      "order": 120,
+      "mode": 0,
+      "inputs": [
+       {
+        "localized_name": "string",
+        "name": "string",
+        "type": "STRING",
+        "link": 95,
+        "widget": {
+         "name": "string"
+        }
+       }
+      ],
+      "outputs": [
+       {
+        "localized_name": "contains",
+        "name": "contains",
+        "type": "BOOLEAN",
+        "links": [
+         100,
+         103
+        ]
+       }
+      ],
+      "properties": {
+       "Node name for S&R": "StringContains"
+      },
+      "widgets_values": [
+       "",
+       "\"bbox\"",
+       true
+      ],
+      "color": "#323",
+      "bgcolor": "#535"
+     },
+     {
+      "id": 126,
+      "type": "StringTrim",
+      "title": "Trim prompt",
+      "pos": [
+       300,
+       562
+      ],
+      "size": [
+       420,
+       82
+      ],
+      "flags": {},
+      "order": 126,
+      "mode": 0,
+      "inputs": [
+       {
+        "localized_name": "string",
+        "name": "string",
+        "type": "STRING",
+        "widget": {
+         "name": "string"
+        },
+        "link": 106
+       }
+      ],
+      "outputs": [
+       {
+        "localized_name": "STRING",
+        "name": "STRING",
+        "type": "STRING",
+        "links": [
+         107
+        ]
+       }
+      ],
+      "properties": {
+       "Node name for S&R": "StringTrim"
+      },
+      "widgets_values": [
+       "",
+       "Both"
+      ],
+      "color": "#323",
+      "bgcolor": "#535"
+     },
+     {
+      "id": 121,
+      "type": "StringConcatenate",
+      "title": "Locked-box input (1/2)",
+      "pos": [
+       300,
+       704
+      ],
+      "size": [
+       420,
+       150
+      ],
+      "flags": {},
+      "order": 121,
+      "mode": 0,
+      "inputs": [
+       {
+        "localized_name": "string_b",
+        "name": "string_b",
+        "type": "STRING",
+        "link": 107,
+        "widget": {
+         "name": "string_b"
+        }
+       }
+      ],
+      "outputs": [
+       {
+        "localized_name": "STRING",
+        "name": "STRING",
+        "type": "STRING",
+        "links": [
+         96
+        ]
+       }
+      ],
+      "properties": {
+       "Node name for S&R": "StringConcatenate"
+      },
+      "widgets_values": [
+       "ORIGINAL PROMPT:\n",
+       "",
+       ""
+      ],
+      "color": "#323",
+      "bgcolor": "#535"
+     },
+     {
+      "id": 122,
+      "type": "StringConcatenate",
+      "title": "Locked-box input (2/2)",
+      "pos": [
+       300,
+       914
+      ],
+      "size": [
+       420,
+       150
+      ],
+      "flags": {},
+      "order": 122,
+      "mode": 0,
+      "inputs": [
+       {
+        "localized_name": "string_a",
+        "name": "string_a",
+        "type": "STRING",
+        "link": 96,
+        "widget": {
+         "name": "string_a"
+        }
+       },
+       {
+        "localized_name": "string_b",
+        "name": "string_b",
+        "type": "STRING",
+        "link": 97,
+        "widget": {
+         "name": "string_b"
+        }
+       }
+      ],
+      "outputs": [
+       {
+        "localized_name": "STRING",
+        "name": "STRING",
+        "type": "STRING",
+        "links": [
+         99
+        ]
+       }
+      ],
+      "properties": {
+       "Node name for S&R": "StringConcatenate"
+      },
+      "widgets_values": [
+       "",
+       "",
+       "\n\nLOCKED BOUNDING-BOX ANNOTATIONS ([y_min, x_min, y_max, x_max] on a 0-1000 canvas, with (0, 0) at the top-left). This is an authoritative JSON list of dictionaries; preserve every supplied identity, provenance value, null, and coordinate exactly:\n"
+      ],
+      "color": "#323",
+      "bgcolor": "#535"
+     },
+     {
+      "id": 123,
+      "type": "ComfySwitchNode",
+      "title": "Upsampler input: plain or locked-box",
+      "pos": [
+       300,
+       1124
+      ],
+      "size": [
+       420,
+       100
+      ],
+      "flags": {},
+      "order": 123,
+      "mode": 0,
+      "inputs": [
+       {
+        "localized_name": "on_false",
+        "name": "on_false",
+        "type": "STRING",
+        "link": 98,
+        "shape": 7
+       },
+       {
+        "localized_name": "on_true",
+        "name": "on_true",
+        "type": "STRING",
+        "link": 99,
+        "shape": 7
+       },
+       {
+        "localized_name": "switch",
+        "name": "switch",
+        "type": "BOOLEAN",
+        "link": 100,
+        "widget": {
+         "name": "switch"
+        }
+       }
+      ],
+      "outputs": [
+       {
+        "localized_name": "output",
+        "name": "output",
+        "type": "STRING",
+        "links": [
+         104
+        ]
+       }
+      ],
+      "properties": {
+       "Node name for S&R": "ComfySwitchNode"
+      },
+      "widgets_values": [
+       false
+      ],
+      "color": "#323",
+      "bgcolor": "#535"
+     },
+     {
+      "id": 114,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+       820,
+       110
+      ],
+      "size": [
+       560,
+       380
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+       {
+        "localized_name": "STRING",
+        "name": "STRING",
+        "type": "STRING",
+        "links": [
+         101
+        ]
+       }
+      ],
+      "title": "System prompt: plain (t2i)",
+      "properties": {
+       "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+       "You are the prompt upsampler of a text-to-image model. Expand the user's short request into ONE detailed, self-contained caption: the exact text the image model receives. Output only the caption, with no greetings, explanations, refusals, questions, Markdown, headings, JSON, coordinates, ids or angle-bracket tokens, and no quotes around it. If the input is not clearly an image request, caption a visualization of its concept. The request may begin with a \"TARGET CANVAS: W:H\" line: compose for that canvas (wide spreads content sideways, tall stacks it) and never mention the ratio or the canvas.\n\nFidelity and planning: keep every explicit subject, attribute, count, spatial constraint, style cue and piece of wording; never contradict, substitute, drop or narrow the request, and keep an abstract concept abstract. Decide everything left open as ONE concrete, consistent plan; never offer alternatives or hedge. Never re-express a stated constraint through another mechanism; add camera optics (depth of field, bokeh, blur) only when asked for or implied. Without a stated style, plan an actual photograph and open with the medium convention (\"Full-color outdoor photograph, ...\", \"Full-color indoor photograph, ...\", \"Studio photograph, ...\", \"Close-up photograph, ...\"); keep \"Photorealistic\" for renders, and turn \"photorealistic\" or \"realistic\" requests for photos into the photograph convention. Give a photograph a few ordinary, non-ideal specifics drawn from the scene's own objects instead of the stock-photo ideal. Do not invent names, brands, logos or celebrities; keep user-named ones. A long request keeps its content but not its wording: drop appraisal and sales vocabulary, turn moods into observable physical facts, and add only new concrete content with positions. Time of day is lighting, not rendered text.\n\nCaption format: one continuous prose block in the generative voice, never \"this image shows\", \"we can see\" or \"is visible\". Lead with medium and style, then scene, lighting and camera, then the subjects with concrete colors, materials and state. Every person in focus gets an observable profile: ethnicity, gender, age range, skin tone (\"fair skin\", \"brown skin\"), hair and clothing. Make the layout reconstructable from words: frame-relative positions (frame-left, frame-right, upper, lower, foreground, midground, background), sentence-initial anchors (\"On the left, ...\", \"In the background, ...\"), relations (holds, faces, behind) and a consistent order; describe up to about ten instances one by one, beyond that give the exact count and arrangement. Out-of-focus or distant planes are shapes, colors and silhouettes, never identities or readable text, and the background takes about a sixth of the caption. Be definite: no hedging adverbs, no quality or emotion judgments, no closing sentence about mood; state negations as what is present. Rendered text: transcribe every wording verbatim inside double quotes in its original language and script, keep the line breaks of multi-line text, and give its typography, color and placement; author concrete, domain-correct wording when the request needs text it does not supply, and name canonical structures (calendar, keyboard, periodic table) exactly with their full layout. All prose is English; only quoted text keeps its language. Typical length is 100 to 350 words, more for complex scenes.\n\nOutput only the caption."
+      ],
+      "widgets_values_named": {
+       "value": "You are the prompt upsampler of a text-to-image model. Expand the user's short request into ONE detailed, self-contained caption: the exact text the image model receives. Output only the caption, with no greetings, explanations, refusals, questions, Markdown, headings, JSON, coordinates, ids or angle-bracket tokens, and no quotes around it. If the input is not clearly an image request, caption a visualization of its concept. The request may begin with a \"TARGET CANVAS: W:H\" line: compose for that canvas (wide spreads content sideways, tall stacks it) and never mention the ratio or the canvas.\n\nFidelity and planning: keep every explicit subject, attribute, count, spatial constraint, style cue and piece of wording; never contradict, substitute, drop or narrow the request, and keep an abstract concept abstract. Decide everything left open as ONE concrete, consistent plan; never offer alternatives or hedge. Never re-express a stated constraint through another mechanism; add camera optics (depth of field, bokeh, blur) only when asked for or implied. Without a stated style, plan an actual photograph and open with the medium convention (\"Full-color outdoor photograph, ...\", \"Full-color indoor photograph, ...\", \"Studio photograph, ...\", \"Close-up photograph, ...\"); keep \"Photorealistic\" for renders, and turn \"photorealistic\" or \"realistic\" requests for photos into the photograph convention. Give a photograph a few ordinary, non-ideal specifics drawn from the scene's own objects instead of the stock-photo ideal. Do not invent names, brands, logos or celebrities; keep user-named ones. A long request keeps its content but not its wording: drop appraisal and sales vocabulary, turn moods into observable physical facts, and add only new concrete content with positions. Time of day is lighting, not rendered text.\n\nCaption format: one continuous prose block in the generative voice, never \"this image shows\", \"we can see\" or \"is visible\". Lead with medium and style, then scene, lighting and camera, then the subjects with concrete colors, materials and state. Every person in focus gets an observable profile: ethnicity, gender, age range, skin tone (\"fair skin\", \"brown skin\"), hair and clothing. Make the layout reconstructable from words: frame-relative positions (frame-left, frame-right, upper, lower, foreground, midground, background), sentence-initial anchors (\"On the left, ...\", \"In the background, ...\"), relations (holds, faces, behind) and a consistent order; describe up to about ten instances one by one, beyond that give the exact count and arrangement. Out-of-focus or distant planes are shapes, colors and silhouettes, never identities or readable text, and the background takes about a sixth of the caption. Be definite: no hedging adverbs, no quality or emotion judgments, no closing sentence about mood; state negations as what is present. Rendered text: transcribe every wording verbatim inside double quotes in its original language and script, keep the line breaks of multi-line text, and give its typography, color and placement; author concrete, domain-correct wording when the request needs text it does not supply, and name canonical structures (calendar, keyboard, periodic table) exactly with their full layout. All prose is English; only quoted text keeps its language. Typical length is 100 to 350 words, more for complex scenes.\n\nOutput only the caption."
+      },
+      "color": "#323",
+      "bgcolor": "#535"
+     },
+     {
+      "id": 124,
+      "type": "PrimitiveStringMultiline",
+      "title": "System prompt: bounding boxes (t2i_bbox)",
+      "pos": [
+       820,
+       550
+      ],
+      "size": [
+       560,
+       380
+      ],
+      "flags": {},
+      "order": 124,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+       {
+        "localized_name": "STRING",
+        "name": "STRING",
+        "type": "STRING",
+        "links": [
+         102
+        ]
+       }
+      ],
+      "properties": {
+       "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+       "You are the prompt upsampler of a text-to-image model. Plan the full image the user's short request implies and output ONE structured caption on a single line: the global caption paragraph, one space, then ONE JSON array, the element table that places every cited element with a bounding box in the image to be generated. Output nothing else (no Markdown fences, commentary or refusals); visualize the concept of a non-image input. The request may begin with a \"TARGET CANVAS: W:H\" line: compose for that canvas and never mention it. Boxes live on a 0-1000 grid stretched onto the canvas: an element of physical width-to-height ratio a gets an x-span of about y-span x a x H/W.\n\nPlanning: keep every explicit subject, attribute, count, spatial constraint, style cue and piece of wording, and decide everything left open as ONE concrete composition that the caption and the table both describe. Without a stated style plan an actual photograph and open with the medium convention (\"Full-color outdoor photograph, ...\", \"Studio photograph, ...\"); add camera optics only when asked for; do not invent names, brands, logos or celebrities; drop appraisal and sales vocabulary.\n\nThe table: one row per distinct object, person, animal, building or salient region the caption mentions and one per coherent text block; no rows for style, lighting or atmosphere. Structured layouts (tables, grids, calendars, keyboards, charts, maps, posters, pages) decompose into their regions, each row carrying that region's complete verbatim content; more than about ten interchangeable items become one collection row giving the exact count and arrangement, while items whose positions matter keep a row each. Row keys, in order: \"id\", \"bbox\", \"desc\". id: the bare class noun plus an index numbered left to right, then top to bottom, from 1 (person_1, dog_2); a text block is its two-letter language code plus _Text_ plus an index (En_Text_1); one entity is one row and ids are unique. bbox: [y_min, x_min, y_max, x_max] as integers from 0 to 1000, top-left origin, clamped at the borders, with plausible relative sizes and a small margin around text. desc: one self-contained paragraph in the generative voice that opens with the element's identity (never \"the X\"): shape, material, colors, state and markings, but no position. People in focus get the richest desc: ethnicity, gender, age range, skin tone, build, hair, face, each garment, accessories, pose and expression. A text row carries its complete wording verbatim in double quotes, with line breaks as \\n, plus its typography.\n\nThe global caption: one flowing paragraph in the generative voice (medium first, then scene, lighting, camera and frame-relative layout; no quality judgments) that names each table element at identity level at its first mention and cites it with its id in its own angle brackets: \"a wicker table <table_1> holding a tiered stand <stand_1>\". Cite every table id and no other; appearance detail and text content live in the descs; no coordinates. Text-dense documents are laid out region by region with every visible text transcribed verbatim at a readable size (cut content rather than shrink type), and a grid quotes every visible cell. All prose is English; only quoted text keeps its language.\n\nOutput only the caption and the table."
+      ],
+      "color": "#323",
+      "bgcolor": "#535"
+     },
+     {
+      "id": 125,
+      "type": "ComfySwitchNode",
+      "title": "System prompt: t2i or t2i_bbox",
+      "pos": [
+       820,
+       990
+      ],
+      "size": [
+       560,
+       100
+      ],
+      "flags": {},
+      "order": 125,
+      "mode": 0,
+      "inputs": [
+       {
+        "localized_name": "on_false",
+        "name": "on_false",
+        "type": "STRING",
+        "link": 101,
+        "shape": 7
+       },
+       {
+        "localized_name": "on_true",
+        "name": "on_true",
+        "type": "STRING",
+        "link": 102,
+        "shape": 7
+       },
+       {
+        "localized_name": "switch",
+        "name": "switch",
+        "type": "BOOLEAN",
+        "link": 103,
+        "widget": {
+         "name": "switch"
+        }
+       }
+      ],
+      "outputs": [
+       {
+        "localized_name": "output",
+        "name": "output",
+        "type": "STRING",
+        "links": [
+         105
+        ]
+       }
+      ],
+      "properties": {
+       "Node name for S&R": "ComfySwitchNode"
+      },
+      "widgets_values": [
+       false
+      ],
+      "color": "#323",
+      "bgcolor": "#535"
+     },
+     {
+      "id": 111,
+      "type": "TextGenerate",
+      "pos": [
+       1480,
+       300
+      ],
+      "size": [
+       480,
+       500
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+       {
+        "localized_name": "clip",
+        "name": "clip",
+        "type": "CLIP",
+        "link": 92
+       },
+       {
+        "localized_name": "image",
+        "name": "image",
+        "shape": 7,
+        "type": "IMAGE",
+        "link": null
+       },
+       {
+        "localized_name": "video",
+        "name": "video",
+        "shape": 7,
+        "type": "IMAGE",
+        "link": null
+       },
+       {
+        "localized_name": "audio",
+        "name": "audio",
+        "shape": 7,
+        "type": "AUDIO",
+        "link": null
+       },
+       {
+        "localized_name": "system_prompt",
+        "name": "system_prompt",
+        "shape": 7,
+        "type": "STRING",
+        "link": 105
+       },
+       {
+        "localized_name": "prompt",
+        "name": "prompt",
+        "type": "STRING",
+        "widget": {
+         "name": "prompt"
+        },
+        "link": 104
+       }
+      ],
+      "outputs": [
+       {
+        "localized_name": "generated_text",
+        "name": "generated_text",
+        "type": "STRING",
+        "links": [
+         91
+        ]
+       },
+       {
+        "localized_name": "thinking",
+        "name": "thinking",
+        "type": "STRING",
+        "links": []
+       }
+      ],
+      "properties": {
+       "Node name for S&R": "TextGenerate"
+      },
+      "widgets_values": [
+       "",
+       3584,
+       "on",
+       1,
+       1,
+       0.95,
+       0,
+       1,
+       758781618552631,
+       1.5,
+       false,
+       true,
+       "off"
+      ],
+      "widgets_values_named": {
+       "prompt": "",
+       "max_length": 3584,
+       "sampling_mode": "on",
+       "sampling_mode.temperature": 1,
+       "sampling_mode.top_k": 1,
+       "sampling_mode.top_p": 0.95,
+       "sampling_mode.min_p": 0,
+       "sampling_mode.repetition_penalty": 1,
+       "sampling_mode.seed": 758781618552631,
+       "sampling_mode.presence_penalty": 1.5,
+       "thinking": false,
+       "use_default_template": true,
+       "mtp": "off"
+      },
+      "title": "Prompt upsampler",
+      "color": "#323",
+      "bgcolor": "#535"
+     }
+    ],
+    "groups": [
+     {
+      "id": 1,
+      "title": "Bounding boxes -> locked-box input",
+      "bounding": [
+       280,
+       0,
+       460,
+       1264
+      ],
+      "color": "#3f789e",
+      "flags": {}
+     },
+     {
+      "id": 2,
+      "title": "System prompts",
+      "bounding": [
+       800,
+       0,
+       600,
+       1264
+      ],
+      "color": "#3f789e",
+      "flags": {}
+     },
+     {
+      "id": 3,
+      "title": "Upsampler",
+      "bounding": [
+       1460,
+       0,
+       520,
+       1264
+      ],
+      "color": "#3f789e",
+      "flags": {}
+     }
+    ],
+    "links": [
+     {
+      "id": 88,
+      "origin_id": -10,
+      "origin_slot": 1,
+      "target_id": 27,
+      "target_slot": 1,
+      "type": "ARRAY"
+     },
+     {
+      "id": 89,
+      "origin_id": -10,
+      "origin_slot": 0,
+      "target_id": 27,
+      "target_slot": 0,
+      "type": "STRING"
+     },
+     {
+      "id": 90,
+      "origin_id": 27,
+      "origin_slot": 0,
+      "target_id": 116,
+      "target_slot": 0,
+      "type": "STRING"
+     },
+     {
+      "id": 91,
+      "origin_id": 111,
+      "origin_slot": 0,
+      "target_id": 116,
+      "target_slot": 1,
+      "type": "STRING"
+     },
+     {
+      "id": 92,
+      "origin_id": 112,
+      "origin_slot": 0,
+      "target_id": 111,
+      "target_slot": 0,
+      "type": "CLIP"
+     },
+     {
+      "id": 93,
+      "origin_id": -10,
+      "origin_slot": 1,
+      "target_id": 118,
+      "target_slot": 1,
+      "type": "ARRAY"
+     },
+     {
+      "id": 94,
+      "origin_id": 118,
+      "origin_slot": 0,
+      "target_id": 119,
+      "target_slot": 0,
+      "type": "STRING"
+     },
+     {
+      "id": 95,
+      "origin_id": 119,
+      "origin_slot": 0,
+      "target_id": 120,
+      "target_slot": 0,
+      "type": "STRING"
+     },
+     {
+      "id": 96,
+      "origin_id": 121,
+      "origin_slot": 0,
+      "target_id": 122,
+      "target_slot": 0,
+      "type": "STRING"
+     },
+     {
+      "id": 97,
+      "origin_id": 119,
+      "origin_slot": 0,
+      "target_id": 122,
+      "target_slot": 1,
+      "type": "STRING"
+     },
+     {
+      "id": 98,
+      "origin_id": -10,
+      "origin_slot": 0,
+      "target_id": 123,
+      "target_slot": 0,
+      "type": "STRING"
+     },
+     {
+      "id": 99,
+      "origin_id": 122,
+      "origin_slot": 0,
+      "target_id": 123,
+      "target_slot": 1,
+      "type": "STRING"
+     },
+     {
+      "id": 100,
+      "origin_id": 120,
+      "origin_slot": 0,
+      "target_id": 123,
+      "target_slot": 2,
+      "type": "BOOLEAN"
+     },
+     {
+      "id": 101,
+      "origin_id": 114,
+      "origin_slot": 0,
+      "target_id": 125,
+      "target_slot": 0,
+      "type": "STRING"
+     },
+     {
+      "id": 102,
+      "origin_id": 124,
+      "origin_slot": 0,
+      "target_id": 125,
+      "target_slot": 1,
+      "type": "STRING"
+     },
+     {
+      "id": 103,
+      "origin_id": 120,
+      "origin_slot": 0,
+      "target_id": 125,
+      "target_slot": 2,
+      "type": "BOOLEAN"
+     },
+     {
+      "id": 104,
+      "origin_id": 123,
+      "origin_slot": 0,
+      "target_id": 111,
+      "target_slot": 5,
+      "type": "STRING"
+     },
+     {
+      "id": 105,
+      "origin_id": 125,
+      "origin_slot": 0,
+      "target_id": 111,
+      "target_slot": 4,
+      "type": "STRING"
+     },
+     {
+      "id": 106,
+      "origin_id": -10,
+      "origin_slot": 0,
+      "target_id": 126,
+      "target_slot": 0,
+      "type": "STRING"
+     },
+     {
+      "id": 107,
+      "origin_id": 126,
+      "origin_slot": 0,
+      "target_id": 121,
+      "target_slot": 0,
+      "type": "STRING"
+     },
+     {
+      "id": 108,
+      "origin_id": -10,
+      "origin_slot": 2,
+      "target_id": 116,
+      "target_slot": 2,
+      "type": "BOOLEAN"
+     },
+     {
+      "id": 109,
+      "origin_id": -10,
+      "origin_slot": 3,
+      "target_id": 112,
+      "target_slot": 0,
+      "type": "COMBO"
+     },
+     {
+      "id": 110,
+      "origin_id": 116,
+      "origin_slot": 0,
+      "target_id": -20,
+      "target_slot": 0,
+      "type": "STRING"
+     }
+    ],
+    "extra": {}
+   }
+  ]
+ }
+}
